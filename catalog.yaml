@@ -1,14 +1,20 @@
 apiVersion: backstage.io/v1alpha1
 kind: Component
 metadata:
- name: atm-locator
- description: ATM locator search application
- tags:
-   - tanzu
+  name: submission-events-notification-service
+  description: Submission Events Notification Service is a Service based on Java and Spring AOP.
 spec:
   type: service
-  lifecycle: experimental
-  owner: default-team
-  system: atm-locator
+  owner: OA
+  lifecycle: production
   providesApis:
-    - atm-locator
+    - health
+    - S1M Update Status
+    - EM ingest status
+    - EM update status
+    - S1M invite stub
+    - S1M invite author
+  consumesApis:
+    - mms
+  dependsOn:
+    - component:ft-metadata-management-service
