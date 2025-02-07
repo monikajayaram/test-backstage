@@ -9,7 +9,25 @@ spec:
   type: service
   owner: guests
   lifecycle: production
-  providesApis:
-    - account-service-example
+  providesApis: [s1-update-status]
   consumesApis:
     - example-grpc-api
+---
+apiVersion: backstage.io/v1alpha1
+kind: API
+metadata:
+  name: s1-update-status
+spec:
+  type: grpc
+  lifecycle: experimental
+  owner: guests
+  definition: |
+    syntax = "proto3";
+
+    service Exampler {
+      rpc Example (ExampleMessage) returns (ExampleMessage) {};
+    }
+
+    message ExampleMessage {
+      string example = 1;
+    };
