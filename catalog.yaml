@@ -33,13 +33,6 @@ spec:
     owner: OA
     lifecycle: production
     definition:
-      openapi: "3.0.0"
-      info:
-        version: 1.0.0
-        title: MMS API
-      paths:
-        /health:
-          get:
-            summary: health
+      $text: https://fetch-my-json.com/awesome-resource.json
     apiConsumedBy:
       - submission-events-notification-service
