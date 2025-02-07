@@ -10,15 +10,15 @@ spec:
   owner: guests
   lifecycle: production
   providesApis:
-    - artist-api
+    - sens-api
   consumesApis:
     - example-grpc-api
 ---
 apiVersion: backstage.io/v1alpha1
 kind: API
 metadata:
-  name: artist-api
-  description: Retrieve artist details
+  name: sens-api
+  description: Submission events notification service that receives event notifications from underlying peer review systems such as Editorial Manager (EM) and ScholarOne (S1).
 spec:
   type: openapi
   lifecycle: production
@@ -27,10 +27,10 @@ spec:
     openapi: "3.0.0"
     info:
       version: 1.0.0
-      title: Artist API
+      title: SENS API
       license:
         name: MIT
     paths:
-      /artists:
+      /health:
         get:
-          summary: List all artists
+          summary: health check
