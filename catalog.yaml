@@ -17,4 +17,4 @@ spec:
   consumesApis:
     - mms
   dependsOn:
-    - component:ft-metadata-management-service
+    - website:example-website
