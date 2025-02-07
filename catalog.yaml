@@ -6,7 +6,7 @@ metadata:
   annotations:
     github.com/project-slug: tandfgroup/submission-events-notification-service
   tags:
-      - java
+    - java
 spec:
   type: service
   owner: OA
