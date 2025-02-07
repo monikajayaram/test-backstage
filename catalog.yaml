@@ -9,7 +9,8 @@ spec:
   type: service
   owner: guests
   lifecycle: production
-  providesApis: [s1-update-status]
+  providesApis: 
+    - s1-update-status
   consumesApis:
     - example-grpc-api
 ---
