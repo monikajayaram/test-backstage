@@ -1,24 +1,32 @@
 apiVersion: backstage.io/v1alpha1
 kind: Component
 metadata:
-  name: submission-events-notification-service
-  description: Submission Events Notification Service is a Service based on Java and Spring AOP.
-  annotations:
-    github.com/project-slug: tandfgroup/submission-events-notification-service
-  tags:
-    - java
+ name: atm-locator
+ description: ATM locator search application
+ tags:
+   - tanzu
+ annotations:
+   'backstage.io/kubernetes-label-selector': 'app.kubernetes.io/part-of=atm-locator'
 spec:
   type: service
-  owner: OA
-  lifecycle: production
+  lifecycle: experimental
+  owner: default-team
+  system: atm-locator
   providesApis:
-    - health
-    - S1M Update Status
-    - EM ingest status
-    - EM update status
-    - S1M invite stub
-    - S1M invite author
-  consumesApis:
-    - mms
-  dependsOn:
-    - component:ft-metadata-management-service
+    - atm-locator 
+---
+apiVersion: backstage.io/v1alpha1
+kind: API
+metadata:
+  name: atm-locator
+  description: The Search API
+  tags:
+    - api
+    - tanzu
+spec:
+  type: openapi
+  lifecycle: experimental
+  owner: default-team
+  system: atm-locator
+  definition:
+    $text: https://atm-locator.perfect300rock.com/api-docs
