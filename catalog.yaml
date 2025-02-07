@@ -18,7 +18,21 @@ apiVersion: backstage.io/v1alpha1
 kind: API
 metadata:
   name: s1-update-status
+  description: Retrieve artist details
 spec:
-  type: grpc
-  lifecycle: experimental
+  type: openapi
+  lifecycle: production
   owner: guests
+  definition: |
+    openapi: "3.0.0"
+    info:
+      version: 1.0.0
+      title: Artist API
+      license:
+        name: MIT
+    servers:
+      - url: http://artist.spotify.net/v1
+    paths:
+      /artists:
+        get:
+          summary: List all artists
