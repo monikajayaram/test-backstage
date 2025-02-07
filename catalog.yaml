@@ -3,6 +3,8 @@ kind: Component
 metadata:
   name: submission-events-notification-service
   description: Submission Events Notification Service is a Service based on Java and Spring AOP.
+  tags:
+    - java
 spec:
   type: service
   owner: guests
