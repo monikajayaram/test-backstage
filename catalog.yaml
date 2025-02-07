@@ -34,5 +34,9 @@ spec:
     lifecycle: production
     definition:
       $text: https://fetch-my-json.com/awesome-resource.json
+    backend:
+      reading:
+        allow:
+          - host:  '*fetch-my-json.com*'
     apiConsumedBy:
       - submission-events-notification-service
