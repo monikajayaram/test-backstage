@@ -9,5 +9,7 @@ spec:
   type: service
   owner: guests
   lifecycle: production
+  providesApis:
+    - account-service-example
   consumesApis:
     - example-grpc-api
