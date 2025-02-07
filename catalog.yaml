@@ -5,8 +5,6 @@ metadata:
  description: ATM locator search application
  tags:
    - tanzu
- annotations:
-   'backstage.io/kubernetes-label-selector': 'app.kubernetes.io/part-of=atm-locator'
 spec:
   type: service
   lifecycle: experimental
