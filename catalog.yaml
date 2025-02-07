@@ -28,8 +28,8 @@ spec:
     info:
       version: 1.0.0
       title: SENS API
-      license:
-        name: MIT
+    servers:
+      - url: https://api-uat.taylorfrancis.com/v1/submission-events-notification
     paths:
       /health:
         get:
