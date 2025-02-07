@@ -37,6 +37,6 @@ spec:
     backend:
       reading:
         allow:
-          - host:  '*fetch-my-json.com*'
+          - host:  https://fetch-my-json.com/awesome-resource.json
     apiConsumedBy:
       - submission-events-notification-service
