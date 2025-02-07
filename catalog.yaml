@@ -8,6 +8,6 @@ spec:
   owner: guests
   lifecycle: production
   consumesApis:
-    - example-grpc-api
+    - grpc:example-grpc-api
   dependsOn:
-    - example-website
+    - website:example-website
