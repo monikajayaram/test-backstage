@@ -7,7 +7,5 @@ spec:
   type: service
   owner: guests
   lifecycle: production
-  consumesApis:
-    - example-grpc-api
   dependsOn:
     - System:example-website
