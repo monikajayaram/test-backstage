@@ -9,15 +9,15 @@ spec:
   type: service
   owner: guests
   lifecycle: production
-  providesApis: 
-    - s1-update-status
+  providesApis:
+    - artist-api
   consumesApis:
     - example-grpc-api
 ---
 apiVersion: backstage.io/v1alpha1
 kind: API
 metadata:
-  name: s1-update-status
+  name: artist-api
   description: Retrieve artist details
 spec:
   type: openapi
