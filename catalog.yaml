@@ -32,5 +32,14 @@ spec:
     type: openapi
     owner: OA
     lifecycle: production
+    definition: |
+      openapi: "3.0.0"
+      info:
+        version: 1.0.0
+        title: MMS API
+      paths:
+        /health:
+          get:
+            summary: health check
     apiConsumedBy:
       - submission-events-notification-service
