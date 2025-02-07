@@ -10,4 +10,4 @@ spec:
   consumesApis:
     - example-grpc-api
   dependsOn:
-    - website:example-website
+    - example-website
