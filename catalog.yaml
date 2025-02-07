@@ -5,7 +5,7 @@ metadata:
   description: Submission Events Notification Service is a Service based on Java and Spring AOP.
   annotations:
     github.com/project-slug: tandfgroup/submission-events-notification-service
-    tags:
+  tags:
       - java
 spec:
   type: service
