@@ -1,0 +1,780 @@
+{
+  "swagger" : "2.0",
+  "info" : {
+    "description" : "Submission events notification service that receives event notifications from underlying peer review systems such as Editorial Manager (EM) and ScholarOne (S1).",
+    "version" : "1.0",
+    "title" : "Submission Events Notification Service Documentation"
+  },
+  "tags" : [ {
+    "name" : "Submission Events Notification API"
+  } ],
+  "schemes" : [ "http" ],
+  "paths" : {
+    "/submission-events-notification/{peerReviewSystem}/ingests/status" : {
+      "post" : {
+        "tags" : [ "Submission Events Notification API" ],
+        "summary" : "Updates ingestion success/failure for EM",
+        "description" : "",
+        "operationId" : "updateIngestionStatus",
+        "consumes" : [ "application/json" ],
+        "produces" : [ "application/json" ],
+        "parameters" : [ {
+          "name" : "peerReviewSystem",
+          "in" : "path",
+          "required" : true,
+          "type" : "string"
+        }, {
+          "name" : "API-KEY",
+          "in" : "header",
+          "required" : true,
+          "type" : "string"
+        }, {
+          "in" : "body",
+          "name" : "body",
+          "required" : true,
+          "schema" : {
+            "type" : "object"
+          }
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "Submission Updated",
+            "schema" : {
+              "$ref" : "#/definitions/Response"
+            }
+          },
+          "400" : {
+            "description" : "Bad Request",
+            "schema" : {
+              "$ref" : "#/definitions/ValidationErrorMessage"
+            }
+          },
+          "401" : {
+            "description" : "Unauthorized",
+            "schema" : {
+              "$ref" : "#/definitions/ErrorMessage"
+            }
+          },
+          "422" : {
+            "description" : "Unprocessable entity",
+            "schema" : {
+              "$ref" : "#/definitions/ErrorMessage"
+            }
+          },
+          "500" : {
+            "description" : "Internal server error",
+            "schema" : {
+              "$ref" : "#/definitions/ErrorMessage"
+            }
+          }
+        }
+      }
+    },
+    "/submission-events-notification/s1m/updates/status" : {
+      "get" : {
+        "tags" : [ "Submission Events Notification API" ],
+        "summary" : "Handles all the operation for S1M",
+        "description" : "",
+        "operationId" : "updateStatusForScholarOneSubmission",
+        "consumes" : [ "application/json" ],
+        "produces" : [ "application/json" ],
+        "parameters" : [ {
+          "name" : "API-KEY",
+          "in" : "header",
+          "required" : false,
+          "type" : "string"
+        }, {
+          "name" : "externalSubmissionId",
+          "in" : "query",
+          "required" : true,
+          "type" : "string"
+        }, {
+          "name" : "systemEventName",
+          "in" : "query",
+          "required" : false,
+          "type" : "string"
+        }, {
+          "name" : "decisionType",
+          "in" : "query",
+          "required" : false,
+          "type" : "string"
+        }, {
+          "name" : "journalName",
+          "in" : "query",
+          "required" : false,
+          "type" : "string"
+        }, {
+          "name" : "siteName",
+          "in" : "query",
+          "required" : false,
+          "type" : "string"
+        }, {
+          "name" : "messageUUID",
+          "in" : "query",
+          "required" : false,
+          "type" : "string"
+        }, {
+          "name" : "subscriptionName",
+          "in" : "query",
+          "required" : false,
+          "type" : "string"
+        }, {
+          "name" : "errorCode",
+          "in" : "query",
+          "required" : false,
+          "type" : "string"
+        }, {
+          "name" : "zipFileName",
+          "in" : "query",
+          "required" : false,
+          "type" : "string"
+        }, {
+          "name" : "documentId",
+          "in" : "query",
+          "required" : false,
+          "type" : "string"
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "Successful",
+            "schema" : {
+              "$ref" : "#/definitions/Response"
+            }
+          },
+          "400" : {
+            "description" : "Bad Request",
+            "schema" : {
+              "$ref" : "#/definitions/ValidationErrorMessage"
+            }
+          },
+          "401" : {
+            "description" : "Unauthorized",
+            "schema" : {
+              "$ref" : "#/definitions/ErrorMessage"
+            }
+          },
+          "422" : {
+            "description" : "Unprocessable entity",
+            "schema" : {
+              "$ref" : "#/definitions/ErrorMessage"
+            }
+          },
+          "500" : {
+            "description" : "Internal server error",
+            "schema" : {
+              "$ref" : "#/definitions/ErrorMessage"
+            }
+          }
+        }
+      }
+    },
+    "/submission-events-notification/{peerReviewSystem}/revise" : {
+      "post" : {
+        "tags" : [ "Submission Events Notification API" ],
+        "operationId" : "revise",
+        "consumes" : [ "application/json" ],
+        "produces" : [ "application/json" ],
+        "parameters" : [ {
+          "name" : "peerReviewSystem",
+          "in" : "path",
+          "required" : true,
+          "type" : "string"
+        }, {
+          "in" : "body",
+          "name" : "body",
+          "required" : true,
+          "schema" : {
+            "type" : "object"
+          }
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "Revision Created"
+          },
+          "400" : {
+            "description" : "Bad Request",
+            "schema" : {
+              "$ref" : "#/definitions/ValidationErrorMessage"
+            }
+          },
+          "401" : {
+            "description" : "Unauthorized",
+            "schema" : {
+              "$ref" : "#/definitions/ErrorMessage"
+            }
+          },
+          "422" : {
+            "description" : "Unprocessable entity",
+            "schema" : {
+              "$ref" : "#/definitions/ErrorMessage"
+            }
+          },
+          "500" : {
+            "description" : "Internal server error",
+            "schema" : {
+              "$ref" : "#/definitions/ErrorMessage"
+            }
+          }
+        }
+      }
+    },
+    "/submission-events-notification/{peerReviewSystem}/updates/status" : {
+      "post" : {
+        "tags" : [ "Submission Events Notification API" ],
+        "summary" : "Updates status and created revisions for EM.",
+        "description" : "",
+        "operationId" : "updateStatusForEditorialManagerSubmission",
+        "consumes" : [ "application/json" ],
+        "produces" : [ "application/json" ],
+        "parameters" : [ {
+          "name" : "peerReviewSystem",
+          "in" : "path",
+          "required" : true,
+          "type" : "string"
+        }, {
+          "name" : "API-KEY",
+          "in" : "header",
+          "required" : true,
+          "type" : "string"
+        }, {
+          "in" : "body",
+          "name" : "body",
+          "required" : true,
+          "schema" : {
+            "type" : "object"
+          }
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "Status Updated"
+          },
+          "400" : {
+            "description" : "Bad Request",
+            "schema" : {
+              "$ref" : "#/definitions/ValidationErrorMessage"
+            }
+          },
+          "401" : {
+            "description" : "Unauthorized",
+            "schema" : {
+              "$ref" : "#/definitions/ErrorMessage"
+            }
+          },
+          "422" : {
+            "description" : "Unprocessable entity",
+            "schema" : {
+              "$ref" : "#/definitions/ErrorMessage"
+            }
+          },
+          "500" : {
+            "description" : "Internal server error",
+            "schema" : {
+              "$ref" : "#/definitions/ErrorMessage"
+            }
+          }
+        }
+      }
+    },
+    "/submission-events-notification/{peerReviewSystem}/actions/{action}" : {
+      "post" : {
+        "tags" : [ "Submission Events Notification API" ],
+        "operationId" : "sendBackToAuthor",
+        "consumes" : [ "application/json" ],
+        "produces" : [ "application/json" ],
+        "parameters" : [ {
+          "name" : "peerReviewSystem",
+          "in" : "path",
+          "required" : true,
+          "type" : "string"
+        }, {
+          "name" : "action",
+          "in" : "path",
+          "required" : true,
+          "type" : "string"
+        }, {
+          "name" : "API-KEY",
+          "in" : "header",
+          "required" : false,
+          "type" : "string"
+        }, {
+          "in" : "body",
+          "name" : "body",
+          "required" : true,
+          "schema" : {
+            "type" : "object"
+          }
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "Status Updated"
+          },
+          "400" : {
+            "description" : "Bad Request",
+            "schema" : {
+              "$ref" : "#/definitions/ValidationErrorMessage"
+            }
+          },
+          "401" : {
+            "description" : "Unauthorized",
+            "schema" : {
+              "$ref" : "#/definitions/ErrorMessage"
+            }
+          },
+          "422" : {
+            "description" : "Unprocessable entity",
+            "schema" : {
+              "$ref" : "#/definitions/ErrorMessage"
+            }
+          },
+          "500" : {
+            "description" : "Internal server error",
+            "schema" : {
+              "$ref" : "#/definitions/ErrorMessage"
+            }
+          }
+        }
+      }
+    },
+    "/submission-events-notification/{peerReviewSystem}/inviteAuthor" : {
+      "post" : {
+        "tags" : [ "Submission Events Notification API" ],
+        "operationId" : "inviteAuthor",
+        "consumes" : [ "application/json" ],
+        "produces" : [ "application/json" ],
+        "parameters" : [ {
+          "name" : "peerReviewSystem",
+          "in" : "path",
+          "required" : true,
+          "type" : "string"
+        }, {
+          "in" : "body",
+          "name" : "body",
+          "required" : true,
+          "schema" : {
+            "type" : "object"
+          }
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "Status Updated"
+          },
+          "400" : {
+            "description" : "Bad Request",
+            "schema" : {
+              "$ref" : "#/definitions/ValidationErrorMessage"
+            }
+          },
+          "401" : {
+            "description" : "Unauthorized",
+            "schema" : {
+              "$ref" : "#/definitions/ErrorMessage"
+            }
+          },
+          "422" : {
+            "description" : "Unprocessable entity",
+            "schema" : {
+              "$ref" : "#/definitions/ErrorMessage"
+            }
+          },
+          "500" : {
+            "description" : "Internal server error",
+            "schema" : {
+              "$ref" : "#/definitions/ErrorMessage"
+            }
+          }
+        }
+      }
+    },
+    "/submission-events-notification/health" : {
+      "get" : {
+        "tags" : [ "Submission Events Notification API" ],
+        "operationId" : "health",
+        "produces" : [ "application/json" ],
+        "parameters" : [ ],
+        "responses" : {
+          "default" : {
+            "description" : "successful operation"
+          }
+        }
+      }
+    },
+    "/submission-events-notification/s1m/invite/stub" : {
+      "get" : {
+        "tags" : [ "Submission Events Notification API" ],
+        "operationId" : "inviteStubForScholarOne",
+        "consumes" : [ "application/json" ],
+        "produces" : [ "application/json" ],
+        "parameters" : [ ],
+        "responses" : {
+          "200" : {
+            "description" : "Status Updated"
+          },
+          "400" : {
+            "description" : "Bad Request",
+            "schema" : {
+              "$ref" : "#/definitions/ValidationErrorMessage"
+            }
+          },
+          "401" : {
+            "description" : "Unauthorized",
+            "schema" : {
+              "$ref" : "#/definitions/ErrorMessage"
+            }
+          },
+          "422" : {
+            "description" : "Unprocessable entity",
+            "schema" : {
+              "$ref" : "#/definitions/ErrorMessage"
+            }
+          },
+          "500" : {
+            "description" : "Internal server error",
+            "schema" : {
+              "$ref" : "#/definitions/ErrorMessage"
+            }
+          }
+        }
+      }
+    },
+    "/submission-events-notification/s1m/invite/author" : {
+      "get" : {
+        "tags" : [ "Submission Events Notification API" ],
+        "operationId" : "inviteAuthorForScholarOne",
+        "consumes" : [ "application/json" ],
+        "produces" : [ "application/json" ],
+        "parameters" : [ ],
+        "responses" : {
+          "200" : {
+            "description" : "Status Updated"
+          },
+          "400" : {
+            "description" : "Bad Request",
+            "schema" : {
+              "$ref" : "#/definitions/ValidationErrorMessage"
+            }
+          },
+          "401" : {
+            "description" : "Unauthorized",
+            "schema" : {
+              "$ref" : "#/definitions/ErrorMessage"
+            }
+          },
+          "422" : {
+            "description" : "UnProcessable entity",
+            "schema" : {
+              "$ref" : "#/definitions/ErrorMessage"
+            }
+          },
+          "500" : {
+            "description" : "Internal server error",
+            "schema" : {
+              "$ref" : "#/definitions/ErrorMessage"
+            }
+          }
+        }
+      }
+    }
+  },
+  "definitions" : {
+    "EntityTag" : {
+      "type" : "object",
+      "properties" : {
+        "value" : {
+          "type" : "string"
+        },
+        "weak" : {
+          "type" : "boolean"
+        }
+      }
+    },
+    "Link" : {
+      "type" : "object",
+      "properties" : {
+        "title" : {
+          "type" : "string"
+        },
+        "params" : {
+          "type" : "object",
+          "additionalProperties" : {
+            "type" : "string"
+          }
+        },
+        "uri" : {
+          "type" : "string",
+          "format" : "uri"
+        },
+        "rels" : {
+          "type" : "array",
+          "items" : {
+            "type" : "string"
+          }
+        },
+        "rel" : {
+          "type" : "string"
+        },
+        "uriBuilder" : {
+          "$ref" : "#/definitions/UriBuilder"
+        },
+        "type" : {
+          "type" : "string"
+        }
+      }
+    },
+    "Locale" : {
+      "type" : "object",
+      "properties" : {
+        "script" : {
+          "type" : "string"
+        },
+        "country" : {
+          "type" : "string"
+        },
+        "variant" : {
+          "type" : "string"
+        },
+        "extensionKeys" : {
+          "type" : "array",
+          "uniqueItems" : true,
+          "items" : {
+            "type" : "string"
+          }
+        },
+        "unicodeLocaleAttributes" : {
+          "type" : "array",
+          "uniqueItems" : true,
+          "items" : {
+            "type" : "string"
+          }
+        },
+        "unicodeLocaleKeys" : {
+          "type" : "array",
+          "uniqueItems" : true,
+          "items" : {
+            "type" : "string"
+          }
+        },
+        "iso3Language" : {
+          "type" : "string"
+        },
+        "iso3Country" : {
+          "type" : "string"
+        },
+        "displayLanguage" : {
+          "type" : "string"
+        },
+        "displayScript" : {
+          "type" : "string"
+        },
+        "displayCountry" : {
+          "type" : "string"
+        },
+        "displayVariant" : {
+          "type" : "string"
+        },
+        "displayName" : {
+          "type" : "string"
+        },
+        "language" : {
+          "type" : "string"
+        }
+      }
+    },
+    "MediaType" : {
+      "type" : "object",
+      "properties" : {
+        "type" : {
+          "type" : "string"
+        },
+        "subtype" : {
+          "type" : "string"
+        },
+        "parameters" : {
+          "type" : "object",
+          "additionalProperties" : {
+            "type" : "string"
+          }
+        },
+        "wildcardType" : {
+          "type" : "boolean"
+        },
+        "wildcardSubtype" : {
+          "type" : "boolean"
+        }
+      }
+    },
+    "NewCookie" : {
+      "type" : "object",
+      "properties" : {
+        "name" : {
+          "type" : "string"
+        },
+        "value" : {
+          "type" : "string"
+        },
+        "version" : {
+          "type" : "integer",
+          "format" : "int32"
+        },
+        "path" : {
+          "type" : "string"
+        },
+        "domain" : {
+          "type" : "string"
+        },
+        "comment" : {
+          "type" : "string"
+        },
+        "maxAge" : {
+          "type" : "integer",
+          "format" : "int32"
+        },
+        "expiry" : {
+          "type" : "string",
+          "format" : "date-time"
+        },
+        "secure" : {
+          "type" : "boolean"
+        },
+        "httpOnly" : {
+          "type" : "boolean"
+        }
+      }
+    },
+    "Response" : {
+      "type" : "object",
+      "properties" : {
+        "entity" : {
+          "type" : "object"
+        },
+        "lastModified" : {
+          "type" : "string",
+          "format" : "date-time"
+        },
+        "date" : {
+          "type" : "string",
+          "format" : "date-time"
+        },
+        "headers" : {
+          "type" : "object",
+          "additionalProperties" : {
+            "type" : "array",
+            "items" : {
+              "type" : "object"
+            }
+          }
+        },
+        "mediaType" : {
+          "$ref" : "#/definitions/MediaType"
+        },
+        "status" : {
+          "type" : "integer",
+          "format" : "int32"
+        },
+        "entityTag" : {
+          "$ref" : "#/definitions/EntityTag"
+        },
+        "cookies" : {
+          "type" : "object",
+          "additionalProperties" : {
+            "$ref" : "#/definitions/NewCookie"
+          }
+        },
+        "links" : {
+          "type" : "array",
+          "uniqueItems" : true,
+          "items" : {
+            "$ref" : "#/definitions/Link"
+          }
+        },
+        "statusInfo" : {
+          "$ref" : "#/definitions/StatusType"
+        },
+        "stringHeaders" : {
+          "type" : "object",
+          "additionalProperties" : {
+            "type" : "array",
+            "items" : {
+              "type" : "string"
+            }
+          }
+        },
+        "metadata" : {
+          "type" : "object",
+          "additionalProperties" : {
+            "type" : "array",
+            "items" : {
+              "type" : "object"
+            }
+          }
+        },
+        "allowedMethods" : {
+          "type" : "array",
+          "uniqueItems" : true,
+          "items" : {
+            "type" : "string"
+          }
+        },
+        "length" : {
+          "type" : "integer",
+          "format" : "int32"
+        },
+        "language" : {
+          "$ref" : "#/definitions/Locale"
+        },
+        "location" : {
+          "type" : "string",
+          "format" : "uri"
+        }
+      }
+    },
+    "StatusType" : {
+      "type" : "object",
+      "properties" : {
+        "family" : {
+          "type" : "string",
+          "enum" : [ "INFORMATIONAL", "SUCCESSFUL", "REDIRECTION", "CLIENT_ERROR", "SERVER_ERROR", "OTHER" ]
+        },
+        "statusCode" : {
+          "type" : "integer",
+          "format" : "int32"
+        },
+        "reasonPhrase" : {
+          "type" : "string"
+        }
+      }
+    },
+    "UriBuilder" : {
+      "type" : "object"
+    },
+    "ValidationErrorMessage" : {
+      "type" : "object",
+      "properties" : {
+        "errors" : {
+          "type" : "array",
+          "readOnly" : true,
+          "items" : {
+            "type" : "string"
+          }
+        }
+      }
+    },
+    "ErrorMessage" : {
+      "type" : "object",
+      "properties" : {
+        "code" : {
+          "type" : "integer",
+          "format" : "int32",
+          "readOnly" : true
+        },
+        "message" : {
+          "type" : "string",
+          "readOnly" : true
+        },
+        "details" : {
+          "type" : "string",
+          "readOnly" : true
+        }
+      }
+    }
+  }
+}
