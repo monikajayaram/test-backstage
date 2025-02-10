@@ -24,4 +24,4 @@ spec:
   lifecycle: production
   owner: guests
   definition: 
-    $text: http://euw1-ap-pe-ws5-srv-nlb-sens-u-0ef837e63c0a7d0a.elb.eu-west-1.amazonaws.com/swagger#/Submission%20Events%20Notification%20API
+    $text: http://euw1-ap-pe-ws5-srv-nlb-sens-u-0ef837e63c0a7d0a.elb.eu-west-1.amazonaws.com/swagger.json
