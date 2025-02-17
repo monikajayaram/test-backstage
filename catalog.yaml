@@ -14,7 +14,7 @@ spec:
   consumesApis:
     - example-grpc-api
   dependsOn:
-    - secret-manager
+    - Resource:secret-manager
 ---
 apiVersion: backstage.io/v1alpha1
 kind: API
