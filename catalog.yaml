@@ -13,6 +13,8 @@ spec:
     - sens-api
   consumesApis:
     - example-grpc-api
+  dependsOn:
+    - secret-manager
 ---
 apiVersion: backstage.io/v1alpha1
 kind: API
@@ -25,3 +27,12 @@ spec:
   owner: guests
   definition: 
     $text: https://github.com/monikajayaram/test-backstage/blob/main/swagger.json
+---
+apiVersion: backstage.io/v1alpha1
+kind: Resource
+metadata:
+  name: secret-manager
+  description: Get secret values
+spec:
+  type: aws-secret-manager
+  owner: guests
