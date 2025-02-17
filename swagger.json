@@ -9,7 +9,7 @@
   "tags" : [ {
     "name" : "Submission Events Notification API"
   } ],
-  "schemes" : [ "https" ],
+  "schemes" : [ "http" ],
   "paths" : {
     "/submission-events-notification/health" : {
       "get" : {
