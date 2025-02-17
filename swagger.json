@@ -5,67 +5,22 @@
     "version" : "1.0",
     "title" : "Submission Events Notification Service Documentation"
   },
+  "host": "euw1-ap-pe-ws5-srv-nlb-sens-d-534ae04afb3a8dfe.elb.eu-west-1.amazonaws.com",
+  "basePath": "/v1",
   "tags" : [ {
     "name" : "Submission Events Notification API"
   } ],
-  "schemes" : [ "http" ],
+  "schemes" : [ "https" ],
   "paths" : {
-    "/submission-events-notification/{peerReviewSystem}/ingests/status" : {
-      "post" : {
+    "/submission-events-notification/health" : {
+      "get" : {
         "tags" : [ "Submission Events Notification API" ],
-        "summary" : "Updates ingestion success/failure for EM",
-        "description" : "",
-        "operationId" : "updateIngestionStatus",
-        "consumes" : [ "application/json" ],
+        "operationId" : "health",
         "produces" : [ "application/json" ],
-        "parameters" : [ {
-          "name" : "peerReviewSystem",
-          "in" : "path",
-          "required" : true,
-          "type" : "string"
-        }, {
-          "name" : "API-KEY",
-          "in" : "header",
-          "required" : true,
-          "type" : "string"
-        }, {
-          "in" : "body",
-          "name" : "body",
-          "required" : true,
-          "schema" : {
-            "type" : "object"
-          }
-        } ],
+        "parameters" : [ ],
         "responses" : {
-          "200" : {
-            "description" : "Submission Updated",
-            "schema" : {
-              "$ref" : "#/definitions/Response"
-            }
-          },
-          "400" : {
-            "description" : "Bad Request",
-            "schema" : {
-              "$ref" : "#/definitions/ValidationErrorMessage"
-            }
-          },
-          "401" : {
-            "description" : "Unauthorized",
-            "schema" : {
-              "$ref" : "#/definitions/ErrorMessage"
-            }
-          },
-          "422" : {
-            "description" : "Unprocessable entity",
-            "schema" : {
-              "$ref" : "#/definitions/ErrorMessage"
-            }
-          },
-          "500" : {
-            "description" : "Internal server error",
-            "schema" : {
-              "$ref" : "#/definitions/ErrorMessage"
-            }
+          "default" : {
+            "description" : "successful operation"
           }
         }
       }
@@ -190,6 +145,66 @@
         "responses" : {
           "200" : {
             "description" : "Revision Created"
+          },
+          "400" : {
+            "description" : "Bad Request",
+            "schema" : {
+              "$ref" : "#/definitions/ValidationErrorMessage"
+            }
+          },
+          "401" : {
+            "description" : "Unauthorized",
+            "schema" : {
+              "$ref" : "#/definitions/ErrorMessage"
+            }
+          },
+          "422" : {
+            "description" : "Unprocessable entity",
+            "schema" : {
+              "$ref" : "#/definitions/ErrorMessage"
+            }
+          },
+          "500" : {
+            "description" : "Internal server error",
+            "schema" : {
+              "$ref" : "#/definitions/ErrorMessage"
+            }
+          }
+        }
+      }
+    },
+    "/submission-events-notification/{peerReviewSystem}/ingests/status" : {
+      "post" : {
+        "tags" : [ "Submission Events Notification API" ],
+        "summary" : "Updates ingestion success/failure for EM",
+        "description" : "",
+        "operationId" : "updateIngestionStatus",
+        "consumes" : [ "application/json" ],
+        "produces" : [ "application/json" ],
+        "parameters" : [ {
+          "name" : "peerReviewSystem",
+          "in" : "path",
+          "required" : true,
+          "type" : "string"
+        }, {
+          "name" : "API-KEY",
+          "in" : "header",
+          "required" : true,
+          "type" : "string"
+        }, {
+          "in" : "body",
+          "name" : "body",
+          "required" : true,
+          "schema" : {
+            "type" : "object"
+          }
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "Submission Updated",
+            "schema" : {
+              "$ref" : "#/definitions/Response"
+            }
           },
           "400" : {
             "description" : "Bad Request",
@@ -385,19 +400,6 @@
         }
       }
     },
-    "/submission-events-notification/health" : {
-      "get" : {
-        "tags" : [ "Submission Events Notification API" ],
-        "operationId" : "health",
-        "produces" : [ "application/json" ],
-        "parameters" : [ ],
-        "responses" : {
-          "default" : {
-            "description" : "successful operation"
-          }
-        }
-      }
-    },
     "/submission-events-notification/s1m/invite/stub" : {
       "get" : {
         "tags" : [ "Submission Events Notification API" ],
@@ -503,17 +505,17 @@
           "type" : "string",
           "format" : "uri"
         },
-        "rels" : {
-          "type" : "array",
-          "items" : {
-            "type" : "string"
-          }
-        },
         "rel" : {
           "type" : "string"
         },
         "uriBuilder" : {
           "$ref" : "#/definitions/UriBuilder"
+        },
+        "rels" : {
+          "type" : "array",
+          "items" : {
+            "type" : "string"
+          }
         },
         "type" : {
           "type" : "string"
@@ -670,8 +672,12 @@
           "type" : "integer",
           "format" : "int32"
         },
-        "entityTag" : {
-          "$ref" : "#/definitions/EntityTag"
+        "allowedMethods" : {
+          "type" : "array",
+          "uniqueItems" : true,
+          "items" : {
+            "type" : "string"
+          }
         },
         "cookies" : {
           "type" : "object",
@@ -679,15 +685,15 @@
             "$ref" : "#/definitions/NewCookie"
           }
         },
+        "statusInfo" : {
+          "$ref" : "#/definitions/StatusType"
+        },
         "links" : {
           "type" : "array",
           "uniqueItems" : true,
           "items" : {
             "$ref" : "#/definitions/Link"
           }
-        },
-        "statusInfo" : {
-          "$ref" : "#/definitions/StatusType"
         },
         "stringHeaders" : {
           "type" : "object",
@@ -707,12 +713,8 @@
             }
           }
         },
-        "allowedMethods" : {
-          "type" : "array",
-          "uniqueItems" : true,
-          "items" : {
-            "type" : "string"
-          }
+        "entityTag" : {
+          "$ref" : "#/definitions/EntityTag"
         },
         "length" : {
           "type" : "integer",
