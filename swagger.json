@@ -5,8 +5,7 @@
     "version" : "1.0",
     "title" : "Submission Events Notification Service Documentation"
   },
-  "host": "euw1-ap-pe-ws5-srv-nlb-sens-d-534ae04afb3a8dfe.elb.eu-west-1.amazonaws.com",
-  "basePath": "/v1",
+  "host": "euw1-ap-pe-ws5-srv-nlb-sens-u-0ef837e63c0a7d0a.elb.eu-west-1.amazonaws.com",
   "tags" : [ {
     "name" : "Submission Events Notification API"
   } ],
