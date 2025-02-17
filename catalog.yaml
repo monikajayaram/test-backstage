@@ -13,6 +13,7 @@ spec:
     - sens-api
   consumesApis:
     - example-grpc-api
+    - ens-api
   dependsOn:
     - Resource:secret-manager
     - Resource:submission-schema
