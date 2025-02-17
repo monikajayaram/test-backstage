@@ -15,6 +15,7 @@ spec:
     - example-grpc-api
   dependsOn:
     - Resource:secret-manager
+    - Resource:submission-schema
 ---
 apiVersion: backstage.io/v1alpha1
 kind: API
@@ -35,4 +36,13 @@ metadata:
   description: Get secret values
 spec:
   type: aws-secret-manager
+  owner: guests
+---
+apiVersion: backstage.io/v1alpha1
+kind: Resource
+metadata:
+  name: submission-schema
+  description: Java library which holds All common models in submission portal for java applications.
+spec:
+  type: nexus-registry
   owner: guests
